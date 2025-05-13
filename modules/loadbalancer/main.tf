@@ -5,7 +5,7 @@ resource "aws_lb" "back_end" {
   security_groups    = var.alb_security_group
   subnets            = var.alb_subnets
 
-  enable_deletion_protection = true
+  enable_deletion_protection = false
 
 
   tags = {
@@ -45,7 +45,7 @@ resource "aws_lb_listener" "back_end1" {
 resource "aws_lb_target_group" "alb_example" {
   name        = var.alb_target_group_name
   target_type = "instance"   
-  port        = 7777
+  port        = 80
   protocol    = "HTTP"      
   vpc_id      = var.vpc_id
 

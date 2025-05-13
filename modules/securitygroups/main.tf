@@ -28,8 +28,8 @@ resource "aws_vpc_security_group_ingress_rule" "alb_ipv4_http" {
 resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4_alb" {
   security_group_id = aws_security_group.alb.id
   ip_protocol       = "tcp"
-  from_port         = "7777"
-  to_port = "7777"
+  from_port         = "80"
+  to_port = "80"
   referenced_security_group_id = aws_security_group.EC2.id
 }
 
@@ -49,12 +49,14 @@ resource "aws_security_group" "EC2" {
 
 resource "aws_vpc_security_group_ingress_rule" "ec2_ipv4" {
   security_group_id = aws_security_group.EC2.id
-  from_port         = "7777"
-  to_port = "7777"
+  from_port         = "80"
+  to_port = "80"
   ip_protocol       = "tcp"
   referenced_security_group_id = aws_security_group.alb.id
  
 }
+
+
 
 resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4_ec2" {
   security_group_id = aws_security_group.EC2.id

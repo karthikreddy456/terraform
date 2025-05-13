@@ -10,7 +10,7 @@
 variable "region" {
   description = "AWS Region"
   type        = string
-  default     = "us-east-2"
+  default     = "ap-south-1"
 }
 
 variable "name" {
@@ -28,7 +28,7 @@ variable "cidr" {
 variable "azs" {
   description = "Availability Zones for the VPC"
   type        = list(string)
-  default     = ["us-east-2a", "us-east-2b"]
+  default     = ["ap-south-1a", "ap-south-1b"]
 }
 
 variable "private_subnets" {

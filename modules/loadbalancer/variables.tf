@@ -16,12 +16,18 @@ variable "certificate_arn" {
   type        = string
 }
 
-
 variable "alb_target_group_name" {
   description = "Name of the target group"
   type        = string
   default     = "ec2-target-group"
 }
+
+# variable "alb_target_group_name_6666" {
+#   description = "Name of the target group"
+#   type        = string
+#   default     = "ec2-target-group-6666"
+  
+# }
 
 variable "vpc_id" {
   description = "VPC ID for the load balancer"

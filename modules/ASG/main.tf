@@ -9,10 +9,15 @@
 #   }
 # }
 
+#  locals {
+#   user_data_content = file("user_data.sh")
+#   user_data_hash    = sha256(local.user_data_content)
+#   }
 resource "aws_launch_template" "asg" {
   name_prefix     = "asg-"
-  image_id        = "ami-04f167a56786e4b09"
+  image_id        = "ami-0e35ddab05955cf57"
   instance_type   = "t2.micro"
+ #user_data = base64encode(local.user_data_content)
   user_data = filebase64("user-data.sh")
   network_interfaces {
     # for a single ENI, you can pass your SG list here:
@@ -27,8 +32,8 @@ resource "aws_launch_template" "asg" {
 resource "aws_autoscaling_group" "asg" {
   name                 = "asg"
   min_size             = 1
-  max_size             = 2
-  desired_capacity     = 2
+  max_size             = 1
+  desired_capacity     = 1
   launch_template {
     id      = aws_launch_template.asg.id
     version = aws_launch_template.asg.latest_version
